@@ -1,19 +1,13 @@
 function timer() {
   // Timer
 
-  let deadline = '2019-03-13 04:43:07 PM';
+  let deadline = '2019-04-01';
 
   function getTimeRemaining(endtime) {
     let t = Date.parse(endtime) - Date.parse(new Date()),
       seconds = Math.floor((t / 1000) % 60),
       minutes = Math.floor((t / 1000 / 60) % 60),
       hours = Math.floor((t / (1000 * 60 * 60)));
-
-
-    hours = ("0" + hours).slice(-2);
-    minutes = ("0" + minutes).slice(-2);
-    seconds = ("0" + seconds).slice(-2);
-
 
     return {
       'total': t,
@@ -34,9 +28,9 @@ function timer() {
 
     function updateClock() {
       let t = getTimeRemaining(endtime);
-      hours.textContent = t.hours;
-      minutes.textContent = t.minutes;
-      seconds.textContent = t.seconds;
+      hours.textContent = formatDate(t.hours);
+      minutes.textContent = formatDate(t.minutes);
+      seconds.textContent = formatDate(t.seconds);
 
 
 
@@ -54,6 +48,13 @@ function timer() {
     }
 
   }
+  const formatDate = function(num) {
+    if (num < 10) {
+      num = '0' + num;
+    }
+    return num;
+  }
+
   setClock('timer', deadline);
 
 }
