@@ -48,8 +48,8 @@ function calc() {
     if (restDays.value == '' || persons.value == '') {
       totalValue.textContent = 0;
     } else {
-      let a = total;
-      totalValue.textContent = a * this.options[this.selectedIndex].value;
+      countTotal();
+      totalValue.textContent = total;
      
     }
   })
