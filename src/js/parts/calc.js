@@ -9,14 +9,21 @@ function calc() {
     personsSum = 0,
     daysSum = 0,
     total = 0;
+    
 
 
   totalValue.textContent = 0;
 
+  const countTotal = function() {
+    total = 0;
+    total = (daysSum + personsSum) * 4000 * place.options[place.selectedIndex].value;
+    
+  }
+
   persons.addEventListener('change', function () {
     personsSum = +this.value;
     if (restDays.value == '' || persons.value == '') return 
-    total = (daysSum + personsSum) * 4000;
+    countTotal();
 
     if (restDays.value == '' || this.value == 0) {
       totalValue.textContent = 0;
@@ -26,10 +33,9 @@ function calc() {
   });
 
   restDays.addEventListener('change', function () {
-    console.log('restDays.value', restDays.value, 'persons.value', persons.value)
     daysSum = +this.value;
     if (restDays.value == '' || persons.value == '') return
-    total = (daysSum + personsSum) * 4000;
+    countTotal();
 
     if (persons.value == '' || this.value == 0) {
       totalValue.textContent = 0;
@@ -44,6 +50,7 @@ function calc() {
     } else {
       let a = total;
       totalValue.textContent = a * this.options[this.selectedIndex].value;
+     
     }
   })
 
